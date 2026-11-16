@@ -1,60 +1,44 @@
-# AI_interview_prepration_system
+# AI Interview Preparation System
 
-A Flask-based ML interview preparation app powered by Google Gemini AI.
+An interactive web application for practicing Machine Learning and Data Science interview questions, featuring real-time AI evaluation powered by LLaMA 3.1 via the Groq API.
 
-## Features
-- 📚 **Browse Mode** — Filter questions by topic, difficulty, or keyword search
-- ⚡ **Quiz Mode** — Random question drill with AI-powered answer evaluation
-- 📊 **Stats** — Dataset breakdown by topic and difficulty
-- 🤖 **AI Evaluation** — Gemini grades your answer with score, strengths, improvements & tip
-- 💡 **Hints** — Get a hint without revealing the full answer
-- 📁 **Upload CSV** — Replace the dataset with your own questions anytime
+## Core Features
+- **Curated Question Bank**: Search, browse, and filter ML questions across topics and difficulty tiers.
+- **Interactive Quiz Drills**: Practice random questions and test recall under interview conditions.
+- **AI Feedback**: Automated answer evaluation grading response quality, identifying strengths, and offering tactical tips.
+- **Contextual Hints**: Request subtle prompts to assist recall without giving away full solutions.
+- **Dataset Extensibility**: Upload new question collections via CSV with automated validation.
 
-## Setup
+## Technical Stack
+- **Backend**: Python 3, Flask
+- **Data Engine**: Pandas
+- **AI Inference**: Groq Cloud SDK (`llama-3.1-8b-instant`)
+- **Frontend**: HTML5, Vanilla JavaScript, CSS3
+- **Testing**: Pytest
 
-### 1. Install dependencies
+## Quickstart
+
+### 1. Setup Environment
 ```bash
-# Using Anaconda (recommended for your setup):
-C:\Users\ELITEBOOK\Downloads\Anaconda\Scripts\pip.exe install flask pandas google-generativeai
+python -m venv venv
+# Windows: venv\Scripts\activate
+# Linux/macOS: source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### 2. Set your Gemini API key
-Open `app.py` and replace `YOUR_API_KEY_HERE`:
-```python
-genai.configure(api_key="YOUR_ACTUAL_GEMINI_API_KEY")
-```
-Or set it as an environment variable:
+### 2. Configure Credentials
+Copy `.env.example` to `.env` and set your API key:
 ```bash
-set GEMINI_API_KEY=your_key_here   # Windows CMD
+GROQ_API_KEY=your_actual_key_here
 ```
 
-### 3. (Optional) Replace dataset
-Drop your `ml_interview_questions.csv` into the project folder.
-Required columns: `question`, `answer`
-Optional columns: `topic`, `difficulty`
-
-### 4. Run the app
+### 3. Run Application
 ```bash
-cd C:\Users\ELITEBOOK\Desktop\contentai\ml_interview_prep
 python app.py
 ```
-Then open **http://127.0.0.1:5000** in your browser.
+Visit `http://127.0.0.1:5000` in your web browser.
 
-## CSV Format
-```csv
-question,answer,topic,difficulty
-What is overfitting?,Overfitting occurs when...,Model Evaluation,Medium
-```
-
-## Project Structure
-```
-ml_interview_prep/
-├── app.py                  ← Flask backend + Gemini API
-├── requirements.txt
-├── ml_interview_questions.csv
-├── templates/
-│   └── index.html          ← Main UI
-└── static/
-    ├── css/style.css       ← Dark terminal aesthetic
-    └── js/app.js           ← All frontend logic
+## Testing
+```bash
+pytest tests/
 ```
