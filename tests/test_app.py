@@ -1,6 +1,14 @@
-import pytest
 import os
-import pandas as pd
+import sys
+
+# Ensure repository root is on sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+# Ensure a mock key exists for testing so Groq client initializes
+if not os.environ.get("GROQ_API_KEY"):
+    os.environ["GROQ_API_KEY"] = "mock_test_key_for_ci_pipeline"
+
+import pytest
 from app import app, load_questions
 
 def test_questions_dataset_structure():
